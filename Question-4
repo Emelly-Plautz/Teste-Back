@@ -1,0 +1,35 @@
+interface EstadoFaturamento {
+    estado: string;
+    faturamento: number;
+}
+
+const faturamentoMensal: EstadoFaturamento[] = [
+    { estado: 'SP', faturamento: 67836.43 },
+    { estado: 'RJ', faturamento: 36678.66 },
+    { estado: 'MG', faturamento: 29229.88 },
+    { estado: 'ES', faturamento: 27165.48 },
+    { estado: 'Outros', faturamento: 19849.53 },
+];
+
+function calcularPercentualFaturamento(
+    faturamento: EstadoFaturamento[]
+): { estado: string; percentual: number }[] {
+    const totalFaturamento = faturamento.reduce(
+        (total, estado) => total + estado.faturamento,
+        0
+    );
+
+    return faturamento.map((estado) => ({
+        estado: estado.estado,
+        percentual: parseFloat(
+            ((estado.faturamento / totalFaturamento) * 100).toFixed(2)
+        ),
+    }));
+}
+
+const percentuais = calcularPercentualFaturamento(faturamentoMensal);
+
+console.log('Percentual de Representação por Estado:');
+percentuais.forEach(({ estado, percentual }) => {
+    console.log(`${estado}: ${percentual}%`);
+});

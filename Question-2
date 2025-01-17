@@ -1,0 +1,24 @@
+function isFibonacci(n: number): boolean {
+    let a = 0, b = 1;
+
+    while (a < n) {
+        [a, b] = [b, a + b];
+    }
+
+    return a === n;
+}
+
+const numero: number = parseInt(prompt("Informe um número para verificar se pertence à sequência de Fibonacci:") as string);
+
+if (isFibonacci(numero)) {
+    console.log(`O número ${numero} pertence à sequência de Fibonacci.`);
+} else {
+    console.log(`O número ${numero} NÃO pertence à sequência de Fibonacci.`);
+}
+
+
+//Entrada:
+//Informe um número para verificar se pertence à sequência de Fibonacci: 21
+
+//Saída:
+//O número 21 pertence à sequência de Fibonacci.
